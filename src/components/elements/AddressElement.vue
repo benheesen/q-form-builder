@@ -6,15 +6,15 @@
       </div>
     </div>
     <div class="row q-col-gutter-sm">
-      <div class="col-12"><q-input v-model="innerValue.address" label="Street" :debounce="debounce" :rules="getRules('street', required)" :ref="`${id}_street`" /></div>
+      <div class="col-12"><q-input v-model="innerValue.address" :label="$t('surveys.street')" :debounce="debounce" :rules="getRules('street', required)" :ref="`${id}_street`" /></div>
     </div>
     <div class="row q-col-gutter-sm">
-      <div class="col-12 col-md-6"><q-input v-model="innerValue.city" label="City" :debounce="debounce" :rules="getRules('city', required)" :ref="`${id}_city`" /></div>
-      <div class="col-12 col-md-6"><q-input v-model="innerValue.state" label="State/Province/Region" :debounce="debounce" :rules="getRules('state', required)" :ref="`${id}_state`"/></div>
+      <div class="col-12 col-md-6"><q-input v-model="innerValue.city" :label="$t('surveys.city')" :debounce="debounce" :rules="getRules('city', required)" :ref="`${id}_city`" /></div>
+      <div class="col-12 col-md-6"><q-input v-model="innerValue.state" :label="$t('surveys.state_province_region')" :debounce="debounce" :rules="getRules('state', required)" :ref="`${id}_state`"/></div>
     </div>
     <div class="row q-col-gutter-sm">
-      <div class="col-12 col-md-6"><q-input v-model="innerValue.zip" label="Zip/Postal Code" :rules="getRules('zip', required)" :ref="`${id}_zip`" /></div>
-      <div class="col-12 col-md-6"><q-select v-model="innerValue.country" :options="countries" label="Country" :debounce="debounce" :rules="getRules('country', required)" :ref="`${id}_country`" /></div>
+      <div class="col-12 col-md-6"><q-input v-model="innerValue.zip" :label="$t('surveys.zip_postalcode')" :rules="getRules('zip', required)" :ref="`${id}_zip`" /></div>
+      <div class="col-12 col-md-6"><q-select v-model="innerValue.country" :options="countries" :label="$t('surveys.country')" :debounce="debounce" :rules="getRules('country', required)" :ref="`${id}_country`" /></div>
     </div>
     <div class="row" v-if="hint">
       <div class="col-12 text-caption" v-html="hint"></div>

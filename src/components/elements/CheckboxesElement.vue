@@ -9,7 +9,7 @@
           <q-option-group type="checkbox" v-model="selectedValues" :options="allOptions" @input="onUpdate" :ref="id" keep-color :color="hasError ? 'red' : ''" />
         </q-item>
         <q-item dense v-if="includeOther">
-          <q-item-section avatar><q-checkbox v-model="selectedOther" label="Other:" keep-color :color="hasError ? 'red' : ''" @input="onUpdate" :ref="`checkbox-other-${id}`" /></q-item-section>
+          <q-item-section avatar><q-checkbox v-model="selectedOther" :label="$t('surveys.other')" keep-color :color="hasError ? 'red' : ''" @input="onUpdate" :ref="`checkbox-other-${id}`" /></q-item-section>
           <q-item-section left><q-input v-model="selectedOtherValue" dense @input="onUpdate" :disable="!selectedOther" :ref="`other-${id}`" /></q-item-section>
         </q-item>
       </q-list>

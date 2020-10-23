@@ -6,17 +6,27 @@
       </div>
     </div>
     <div class="row q-col-gutter-sm">
-      <div class="col-12 col-md-6"><q-input v-model="innerValue.ccname" label="Name on card" :debounce="debounce" :rules="getRules('ccname', required)" :ref="`${id}_ccname`" /></div>
+      <div class="col-12 col-md-6">
+        <q-input v-model="innerValue.ccname" :label="$t('surveys.name_on_card')" :debounce="debounce" :rules="getRules('ccname', required)" :ref="`${id}_ccname`" />
+      </div>
     </div>
     <div class="row q-col-gutter-sm">
-      <div class="col-12 col-md-6"><q-input v-model="innerValue.ccnum" label="Card number" fill-mask="#" :debounce="debounce" :rules="getRules('ccnum', required)" :ref="`${id}_ccnum`" /></div>
+      <div class="col-12 col-md-6">
+        <q-input v-model="innerValue.ccnum" :label="$t('surveys.card_number')" fill-mask="#" :debounce="debounce" :rules="getRules('ccnum', required)" :ref="`${id}_ccnum`" />
+      </div>
     </div>
     <div class="row q-col-gutter-sm">
-      <div class="col-12 col-sm-6 col-md-3"><q-select v-model="innerValue.expmonth" :options="expmonths" label="Exp. Month" :debounce="debounce" :rules="getRules('expmonth', required)" :ref="`${id}_expmonth`" /></div>
-      <div class="col-12 col-sm-6 col-md-3"><q-select v-model="innerValue.expyear" :options="expyears" label="Exp. Year" :debounce="debounce" :rules="getRules('expyear', required)" :ref="`${id}_expyear`" /></div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <q-select v-model="innerValue.expmonth" :options="expmonths" :label="$t('surveys.exp_month')" :debounce="debounce" :rules="getRules('expmonth', required)" :ref="`${id}_expmonth`" />
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <q-select v-model="innerValue.expyear" :options="expyears" :label="$t('surveys.exp_year')" :debounce="debounce" :rules="getRules('expyear', required)" :ref="`${id}_expyear`" />
+      </div>
     </div>
     <div class="row q-col-gutter-sm">
-      <div class="col-12 col-sm-6 col-md-3"><q-input v-model="innerValue.cvv" label="CVV" fill-mask="#" hint="3 or 4 digit code on back of card" maxlength="4" :debounce="debounce" :rules="getRules('cvv', required)" :ref="`${id}_cvv`" /></div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <q-input v-model="innerValue.cvv" :label="$t('surveys.CVV')" fill-mask="#" :hint="$t('surveys.3or4digit_code_on_back_of_card')" maxlength="4" :debounce="debounce" :rules="getRules('cvv', required)" :ref="`${id}_cvv`" />
+      </div>
     </div>
     <div class="row" v-if="hint">
       <div class="col-12 text-caption" v-html="hint"></div>

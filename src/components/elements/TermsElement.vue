@@ -5,7 +5,7 @@
       <q-scroll-area class="terms-scroll-area" :content-style="termsContentStyle" :content-active-style="termsContentStyle">
         <div class="text-body2" v-html="hint"></div>
       </q-scroll-area>
-      <q-checkbox v-model="iAgree" :ref="id" true-value="I Agree" :false-value="false" keep-color :color="hasError ? 'red' : ''"><span :class="hasError ? 'text-negative' : ''">I Agree</span></q-checkbox>
+      <q-checkbox v-model="iAgree" :ref="id" :true-value="$t('surveys.i_agree')" :false-value="false" keep-color :color="hasError ? 'red' : ''"><span :class="hasError ? 'text-negative' : ''">{{ $t('surveys.i_agree') }}</span></q-checkbox>
       <p class="text-negative text-caption" v-for="(error, idx) in errors" :key="idx">{{ error }}</p>
     </div>
   </div>

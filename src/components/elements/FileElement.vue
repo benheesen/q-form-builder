@@ -9,7 +9,7 @@
             {{ getLabel }}
             <span class="float-right">
               <q-btn flat round size="sm" icon="open_in_new" @click="viewOriginal">
-                <q-tooltip>View Original</q-tooltip>
+                <q-tooltip>{{ $t('surveys.view_original') }}</q-tooltip>
               </q-btn>
               <q-btn flat round size="sm" icon="delete" @click="unsetUpload">
                 <q-tooltip>Remove</q-tooltip>

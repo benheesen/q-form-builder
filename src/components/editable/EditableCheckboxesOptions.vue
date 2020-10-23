@@ -10,7 +10,7 @@
           <q-input dense v-model="option.label" />
         </q-item-section>
         <q-item-section side>
-          <q-btn round flat size="xs" icon="delete" @click="deleteItem(index)"><q-tooltip>Delete this option</q-tooltip></q-btn>
+          <q-btn round flat size="xs" icon="delete" @click="deleteItem(index)"><q-tooltip>{{ $t('surveys.delete_this_option') }}</q-tooltip></q-btn>
         </q-item-section>
       </q-item>
       <q-item dense>
@@ -21,11 +21,11 @@
           <q-input dense filled v-model="newItem.label" />
         </q-item-section>
         <q-item-section side>
-          <q-btn round size="xs" icon="add" @click="addNewItem"><q-tooltip>Add this option</q-tooltip></q-btn>
+          <q-btn round size="xs" icon="add" @click="addNewItem"><q-tooltip>{{ $t('surveys.add_this_option') }}</q-tooltip></q-btn>
         </q-item-section>
       </q-item>
       <q-item dense>
-        <q-checkbox v-model="value.include_other_option" label="Include &quot;Other&quot; option" />
+        <q-checkbox v-model="value.include_other_option" :label="$t('surveys.include_other_option')" />
       </q-item>
     </q-list>
   </div>
@@ -42,7 +42,7 @@ import {
   QBtn,
   QTooltip
 } from 'quasar'
-
+// import i18n from '../../../i18n.js'
 const defaultNewItem = () => ({
   checked: false,
   label: ''

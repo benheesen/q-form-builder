@@ -2,14 +2,24 @@
   <q-layout container style="width: 100%; height: 100%; min-height:calc(100vh - 50px);" view="hHh Lpr fff">
     <q-drawer v-model="drawer" show-if-above bordered :side="navPosition">
       <q-tabs v-model="tab" align="justify" dense narrow-indicator>
-        <q-tab name="add" label="Add Field" />
-        <q-tab name="edit" label="Edit Field" :disable="!currentField" />
+        <q-tab name="add" :label="$t('surveys.add_field')" />
+        <q-tab name="edit" :label="$t('surveys.edit_field')" :disable="!currentField" />
       </q-tabs>
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="add">
           <draggable :list="sourceFields" :clone="createField" :options="sourceOptions" :sort="false">
             <div class="source-field" v-for="(sourceField, idx) in sourceFields" :key="idx">
-              <q-btn type="button" size="12px" dense align="left" class="btn-fixed-width" @click="onAddFieldClick(sourceField.type)" :icon="sourceField.icon" :label="sourceField.label" v-if="sourceField.type !== ''" />
+              <q-btn
+                type="button"
+                size="12px"
+                dense
+                align="left"
+                class="btn-fixed-width"
+                @click="onAddFieldClick(sourceField.type)"
+                :icon="sourceField.icon"
+                :label="sourceField.label"
+                v-if="sourceField.type !== ''"
+              />
             </div>
           </draggable>
         </q-tab-panel>
@@ -26,8 +36,8 @@
           <div class="editable-element-container" v-for="(field, idx) in fields" :key="idx">
             <editable-element v-model="fields[idx]" @click="selectForEdit" :class="{'selected': isSelectedForEdit(idx)}" :ref="fields[idx].cid" />
             <div class="editable-element-action-buttons">
-              <q-btn class="editable-element-button" v-if="isSelectedForEdit(idx)" @click="deleteField(idx)" color="red" icon="delete" round size="xs"><q-tooltip>Delete this field</q-tooltip></q-btn>
-              <q-btn class="editable-element-button" v-if="isSelectedForEdit(idx)" @click="duplicateField(idx)" color="secondary" icon="file_copy" round size="xs"><q-tooltip>Duplicate this field</q-tooltip></q-btn>
+              <q-btn class="editable-element-button" v-if="isSelectedForEdit(idx)" @click="deleteField(idx)" color="red" icon="delete" round size="xs"><q-tooltip>{{ $t('surveys.delete_this_field') }}</q-tooltip></q-btn>
+              <q-btn class="editable-element-button" v-if="isSelectedForEdit(idx)" @click="duplicateField(idx)" color="secondary" icon="file_copy" round size="xs"><q-tooltip>{{ $t('surveys.duplicate_this_field') }}</q-tooltip></q-btn>
             </div>
           </div>
         </draggable>
@@ -52,11 +62,11 @@ import {
   uid,
   extend
 } from 'quasar'
-
 import draggable from 'vuedraggable'
 import EditableElement from './editable/EditableElement'
 import EditableElementOptions from './editable/EditableElementOptions'
 import * as utils from './utils'
+import { i18n } from '../i18n.js'
 
 export default {
   name: 'QFormBuilder',
@@ -85,26 +95,26 @@ export default {
     sourceFields: {
       required: false,
       default: () => [
-        { type: 'text', icon: 'text_format', label: 'Text' },
-        { type: 'paragraph', icon: 'text_fields', label: 'Paragraph' },
-        { type: 'checkboxes', icon: 'check_box', label: 'Checkboxes' },
-        { type: 'radio', icon: 'radio_button_checked', label: 'Mult. Choice' },
-        { type: 'date', icon: 'event', label: 'Date' },
-        { type: 'time', icon: 'access_time', label: 'Time' },
-        { type: 'dropdown', icon: 'arrow_drop_down', label: 'Dropdown' },
-        { type: 'email', icon: 'email', label: 'Email' },
-        { type: 'name', icon: 'person', label: 'Name' },
-        { type: 'simple_name', icon: 'person_outline', label: 'Simple Name' },
-        { type: 'address', icon: 'home', label: 'Address' },
-        { type: 'phone', icon: 'phone', label: 'Phone' },
-        { type: 'file', icon: 'cloud_upload', label: 'File Upload' },
-        { type: 'payment', icon: 'payment', label: 'Payment' },
-        { type: 'terms', icon: 'ballot', label: 'Terms' },
+        { type: 'text', icon: 'text_format', label: i18n.t('surveys.text') },
+        { type: 'paragraph', icon: 'text_fields', label: i18n.t('surveys.paragraph') },
+        { type: 'checkboxes', icon: 'check_box', label: i18n.t('surveys.checkboxes') },
+        { type: 'radio', icon: 'radio_button_checked', label: i18n.t('surveys.multiple_choice') },
+        { type: 'date', icon: 'event', label: i18n.t('surveys.date') },
+        { type: 'time', icon: 'access_time', label: i18n.t('surveys.time') },
+        { type: 'dropdown', icon: 'arrow_drop_down', label: i18n.t('surveys.dropdown') },
+        { type: 'email', icon: 'email', label: i18n.t('surveys.email') },
+        { type: 'name', icon: 'person', label: i18n.t('surveys.name') },
+        { type: 'simple_name', icon: 'person_outline', label: i18n.t('surveys.simple_name') },
+        { type: 'address', icon: 'home', label: i18n.t('surveys.address') },
+        { type: 'phone', icon: 'phone', label: i18n.t('surveys.phone') },
+        { type: 'file', icon: 'cloud_upload', label: i18n.t('surveys.file_upload') },
+        { type: 'payment', icon: 'payment', label: i18n.t('surveys.payment') },
+        { type: 'terms', icon: 'ballot', label: i18n.t('surveys.terms') },
         { type: '' },
         { type: '' },
         { type: '' },
-        { type: 'section_break', icon: 'view_agenda', label: 'Section Break' },
-        { type: 'page_break', icon: 'call_to_action', label: 'Page Break' }
+        { type: 'section_break', icon: 'view_agenda', label: i18n.t('surveys.section_break') },
+        { type: 'page_break', icon: 'call_to_action', label: i18n.t('surveys.page_break') }
       ]
     }
   },
